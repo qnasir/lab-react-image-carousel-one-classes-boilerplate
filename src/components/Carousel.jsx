@@ -1,65 +1,47 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./Carousel.css";
 import { images } from "../data/CarouselData";
-// you can explore more - and check as how to use materiul ui
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+
+// you can research - how to use material ui
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-// implement the class below
-class Carousel extends Component {
-  constructor() {
-    super();
+// complete the function below:
+function Carousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    //set an initial state
-    this.state = {
-        currIndex : 0,
-    }
-  }
-
-  increaseCount = ()=> {
-    if (this.state.currIndex >= images.length -1) {
-        this.setState ({
-            currIndex : 0,
-        })
+  const increaseCount = () => {
+    if (currentIndex === images.length - 1) {
+      setCurrentIndex(0);
     } else {
-            this.setState({
-                currIndex : this.state.currIndex + 1,
-            })
-        }
-  };
-
-  decreaseCount = ()=> {
-
-    //if index is == 0 then bring it to the last index
-    if (this.state.currIndex == 0) {
-        this.setState ({
-            currIndex : images.length -1,
-        })
-    } else {
-        this.setState({
-            currIndex : this.state.currIndex - 1,
-        })
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
-  render() {
-    return (
-        <>
-            <h1>Carousel</h1>
-            <div className="carousel-container flex">
-                <div className="leftArrow arrowDiv flex" onClick={this.decreaseCount}>
-                    <ArrowBackIosIcon/>
-                </div>
-                <h2 className="title">{images[this.state.currIndex].title}</h2>
-                <img src={images[this.state.currIndex].img} alt="" />
-                <h4 className="caption">{images[this.state.currIndex].subtitle}</h4>
-                <div className="rightArrow arrowDiv flex" onClick={this.increaseCount}>
-                    <ArrowForwardIosIcon/>
-                </div>
-            </div>
-        </>
-    )
-  }
+  const decreaseCount = () => {
+    if (currentIndex <= 0) {
+      setCurrentIndex(images.length - 1);
+    } else {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  return (
+    <>
+      <h1>Carousel</h1>
+      <div className="carousel-container flex">
+        <div className="leftArrow arrowDiv flex" onClick={decreaseCount}>
+          <ArrowBackIosIcon />
+        </div>
+        <h2 className="title">{images[currentIndex].title}</h2>
+        <img src={images[currentIndex].img} alt="" />
+        <h4 className="caption">{images[currentIndex].subtitle}</h4>
+        <div className="rightArrow arrowDiv flex" onClick={increaseCount}>
+          <ArrowForwardIosIcon />
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Carousel;

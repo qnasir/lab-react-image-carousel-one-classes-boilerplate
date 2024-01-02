@@ -1,5 +1,5 @@
 {
-  "name": "image-carousel-classes-boilerplate",
+  "name": "image-carousel-boilerplate",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -40,6 +40,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.4",
-    "vite": "^4.4.9"
+    "vite": "^4.5.1"
   }
 }
